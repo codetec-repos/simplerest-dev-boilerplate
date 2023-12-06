@@ -1,0 +1,19 @@
+{
+  "name": "simplerest-dev-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "simplerest-boilerplate": "node index.js"
+  },
+  "author": "Codetec",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "pg": "^8.10.0"
+  }
+}
