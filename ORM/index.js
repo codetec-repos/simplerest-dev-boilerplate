@@ -5,7 +5,9 @@ class DB {
     #connection = null
 
     constructor () {
-        this.#connection = Knex({
+        const dbType = process.env.DB_CLIENT
+
+        let conn = {
             client: process.env.DB_CLIENT ?? 'mysql',
             connection: {
                 host: process.env.DB_HOST,
@@ -17,11 +19,35 @@ class DB {
             pool: {
                 min: 2,
                 max: 5
-            },
-            ssl: {
-                rejectUnauthorized: false
             }
-        })
+        }
+
+        if(dbType == 'pg') {
+            connection = {
+                host,
+                port,
+                user,
+                password,
+                database,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            }
+
+            this.isPg = true
+        } else if (dbType == 'mssql') {
+            connection = {
+                host,
+                user,
+                password,
+                database,
+                options: {
+                    port:  Number(port) ?? 1443
+                }
+            }
+        }
+
+        this.#connection = Knex(conn)
     }
 
     async getConnection () {

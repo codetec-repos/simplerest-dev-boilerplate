@@ -1,4 +1,4 @@
-module.exports = async (db, params) => {
+module.exports = async (simplerest, db) => {
     try {
         // insert the code here
 
